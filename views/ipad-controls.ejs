@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tata Electronics - Controls</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("../images/bg2.png");
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            width: 100vw;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+        .logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+
+
+
+
+
+        .button-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .button {
+            position: absolute;
+            width: 218px;
+            padding: 26px 20px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+
+        .button-title {
+            font-weight: semi-bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .button-subtitle {
+            color: #8cc63f;
+            font-size: 12px;
+        }
+
+
+        /* Background elements */
+        .bg-element {
+            position: absolute;
+            z-index: 0;
+        }
+
+
+
+
+
+
+
+
+
+
+        /* Button positioning */
+        #btn1 {
+            top: 38%;
+            left: 50px;
+        }
+
+        #btn2 {
+            top: 52%;
+            left: 50px;
+        }
+
+        #btn3 {
+            top: 38%;
+            right: 50px;
+        }
+
+        #btn4 {
+            top: 52%;
+            right: 50px;
+        }
+
+        #btn5 {
+
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <button id="btn1" class="button" onclick="sendVideo('video1.mp4')">
+                <!-- <div>
+                    <div class="button-title">Tata Electronics</div>
+                    <div class="button-subtitle">Corporate Video</div>
+                </div> -->
+
+            </button>
+
+            <button id="btn2" class="button" onclick="sendVideo('video2.mp4')">
+                <!-- <div>
+                    <div class="button-title">Tata Electronics</div>
+                    <div class="button-subtitle">Corporate Presentation</div>
+                </div> -->
+
+            </button>
+
+            <button id="btn3" class="button" onclick="sendVideo('video3.mp4')">
+                <!-- <div>
+                    <div class="button-title">Tata Semiconductor Manufacturing</div>
+                    <div class="button-subtitle">Promo Video</div>
+                </div> -->
+
+            </button>
+
+            <button id="btn4" class="button" onclick="sendVideo('video4.mp4')">
+                <!-- <div>
+                    <div class="button-title">Tata Semiconductor Manufacturing</div>
+                    <div class="button-subtitle">Project Video</div>
+                </div> -->
+
+            </button>
+
+            <button id="btn5" class="button" onclick="sendVideo('video5.mp4')">
+                <!-- <div>
+                    <div class="button-title">Tata Semiconductor Manufacturing</div>
+                    <div class="button-subtitle">Technical Video</div>
+                </div> -->
+
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        function sendVideo(video) {
+            socket.emit("playVideo", video);
+        }
+    </script>
+</body>
+
+</html>

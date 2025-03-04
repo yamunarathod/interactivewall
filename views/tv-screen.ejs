@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Screen</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background: black; }
+        
+        .media {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #videoPlayer { 
+            display: none;
+            opacity: 0;
+        }
+
+        #defaultImage {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <img id="defaultImage" src="images/bg.png" alt="Default Image" class="media">
+    <video id="videoPlayer" class="media"></video>
+
+    <script>
+        const socket = io();
+        const videoPlayer = document.getElementById("videoPlayer");
+        const defaultImage = document.getElementById("defaultImage");
+
+        socket.on("playVideo", (video) => {
+            defaultImage.style.opacity = "0"; // Fade out the default image
+            setTimeout(() => {
+                defaultImage.style.display = "none"; // Hide the image after fade-out
+                videoPlayer.src = "videos/" + video;
+                videoPlayer.style.display = "block";
+                videoPlayer.style.opacity = "1"; // Fade in the video
+                videoPlayer.play();
+            }, 1000); // Matches transition duration
+        });
+
+        videoPlayer.onended = () => {
+            videoPlayer.style.opacity = "0"; // Fade out the video
+            setTimeout(() => {
+                videoPlayer.style.display = "none"; // Hide the video after fade-out
+                defaultImage.style.display = "block";
+                defaultImage.style.opacity = "1"; // Fade in the default image
+            }, 1000); // Matches transition duration
+        };
+    </script>
+</body>
+</html>

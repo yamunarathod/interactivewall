@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPad - Start</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('/images/bg.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .button {
+            padding: 22px 75px;
+
+            font-size: 24px;
+            cursor: pointer;
+            background-color:transparent;
+            border: none;
+            outline: none;
+            color: white;
+            border-radius: 10px;
+            transition: background 0.3s;
+            position: absolute;
+            top: 66%;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="location.href='/ipad-controls'"></button>
+</body>
+</html>
